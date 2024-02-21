@@ -5,7 +5,8 @@ networks:
 
 services:
   javaapp:
-    image: lottery-posttest:latest  # Replace with your Java app image
+    build: .  # Replace with your Java app image
+    container_name: lottery-posttest
     ports:
       - "8888:8888"  # Expose your Java app's port
     networks:
