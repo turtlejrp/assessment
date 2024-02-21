@@ -2,37 +2,32 @@ package com.kbtg.bootcamp.posttest.lottery;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-
 
 @Entity
 @Table(name="lottery")
 public class Lottery {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
     @NotNull
-    @Column(length = 6, nullable = false)
-    @Pattern(regexp = "^[0-9]{6}$")
     private String ticket;
 
     @NotNull
-    private Double price;
+    private int price;
 
     @NotNull
-    private Integer amount;
+    private int amount;
+
+    public Lottery(){}
 
     public String getTicket() {
         return ticket;
     }
 
-    public Double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public Integer getAmount() {
+    public int getAmount() {
         return amount;
     }
 
@@ -40,11 +35,11 @@ public class Lottery {
         this.ticket = ticket;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 }

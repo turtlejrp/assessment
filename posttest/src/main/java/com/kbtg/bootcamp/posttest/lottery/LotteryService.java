@@ -1,11 +1,10 @@
 package com.kbtg.bootcamp.posttest.lottery;
 
+import com.kbtg.bootcamp.posttest.exception.BadRequestException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -14,21 +13,21 @@ public class LotteryService {
 
     private final LotteryRepository lotteryRepository;
 
-
     public LotteryService(LotteryRepository lotteryRepository) {
         this.lotteryRepository = lotteryRepository;
     }
-
 
     public List<String> getLotteries(){
         List<Lottery> lotteryList = lotteryRepository.findAll();
         return lotteryList.stream()
                 .map(Lottery::getTicket)
+                .sorted()
                 .collect(Collectors.toList());
     }
 
     @Transactional
-    public String addLotteries(LotteryRequest request) throws Exception{
+    public String addLotteries(LotteryRequest request) throws BadRequestException {
+
         Optional<Lottery> optionalLottery = lotteryRepository.findByTicket(request.ticket());
         Lottery lottery;
         if(optionalLottery.isPresent()){
@@ -37,7 +36,7 @@ public class LotteryService {
                 lottery.setAmount(lottery.getAmount()+ request.amount());
                 lotteryRepository.save(lottery);
             } else {
-                throw new Exception("Invalid price");
+                throw new BadRequestException("Price is not equal to the same price");
             }
         }else {
             lottery = new Lottery();
@@ -48,7 +47,5 @@ public class LotteryService {
         }
         return lottery.getTicket();
     }
-
-
 
 }

@@ -1,21 +1,20 @@
 package com.kbtg.bootcamp.posttest.lottery;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
 
-record LotteryRequest(
-        @NotNull
-        @Size(min = 6, max = 6)
+public record LotteryRequest(
+
+        @Pattern(regexp = "^[0-9]{6}$")
         String ticket,
 
         @NotNull
         @Positive
-        Double price,
+        Integer price,
 
         @NotNull
         @Positive
-        Integer amount
+        int amount
 ) {
 }
