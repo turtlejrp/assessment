@@ -1,0 +1,28 @@
+version: '3'  # Adjust the version if needed
+
+networks:
+  integration-test-example:
+
+services:
+  javaapp:
+    image: lottery-posttest:latest  # Replace with your Java app image
+    ports:
+      - "8888:8888"  # Expose your Java app's port
+    networks:
+      - integration-test-example
+    depends_on:
+      - postgresdb
+  postgresdb:
+    image: postgres:latest  # Or specify a specific version
+    environment:
+      POSTGRES_DB: lottery
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Optionally persist database data
+    ports:
+      - "5432:5432"
+    networks:
+      - integration-test-example
+volumes:
+  postgresdata: 
