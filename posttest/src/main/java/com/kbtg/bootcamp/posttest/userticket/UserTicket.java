@@ -14,7 +14,6 @@ public class UserTicket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-
     @NotNull
     @ManyToOne
     @JoinColumn(name="ticket_id",referencedColumnName = "ticket",nullable = false)
