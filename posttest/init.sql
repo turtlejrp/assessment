@@ -17,6 +17,5 @@ CREATE TABLE user_ticket (
 -- Initial data
 INSERT INTO lottery(ticket, price, amount) VALUES('000000', 80,1);
 INSERT INTO lottery(ticket, price, amount) VALUES('000001', 80,1);
-INSERT INTO lottery(ticket, price, amount) VALUES('123456', 100,1);
 INSERT INTO user_ticket(ticket_id, user_id) VALUES('000000','0123456789');
 
