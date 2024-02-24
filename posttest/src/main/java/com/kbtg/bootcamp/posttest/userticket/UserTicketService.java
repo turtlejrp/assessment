@@ -6,7 +6,6 @@ import com.kbtg.bootcamp.posttest.lottery.LotteryRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;

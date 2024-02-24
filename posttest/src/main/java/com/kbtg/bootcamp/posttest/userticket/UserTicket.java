@@ -20,7 +20,7 @@ public class UserTicket {
     private Lottery ticketId;
 
     @NotNull
-    @Column(name = "user_id",length = 10, nullable = false)
+    @Column(name = "user_id", nullable = false)
     @Pattern(regexp = "^[0-9]{10}$")
     private String userId;
 
